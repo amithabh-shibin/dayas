@@ -87,7 +87,10 @@ if (hero) {
 const enquiry = document.querySelector('#enquiry');
 if (enquiry) {
   const service = enquiry.elements.namedItem('service');
-  const selected = new URLSearchParams(location.search).get('service');
+  const params = new URLSearchParams(location.search);
+  const selected = params.get('service');
+  const destination = params.get('destination');
+  if (destination) enquiry.elements.namedItem('destination').value = destination.slice(0, 100);
   if ([...service.options].some((option) => option.value === selected)) {
     service.value = selected;
   }
